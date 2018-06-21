@@ -24,7 +24,7 @@ dm.name HAVING COUNT(*) >=1 ORDER BY dm.name;
 8. SELECT dm.name, COUNT(d.id) as degree_count FROM department as dm LEFT OUTER JOIN degree as d ON d.department_id =
 dm.id GROUP BY dm.name ORDER BY dm.name;
 
-9. SELECT dm.name FROM department as dm, degree as d WHERE d.department_id = dm.id GROUP BY dm.name HAVING COUNT(d.id) = 3
+9. SELECT dm.name FROM department as dm, degree as d WHERE d.department_id = dm.id GROUP BY dm.name HAVING COUNT(d.id) =  (select count(id) from degree group by department_id order by name limit 1)
 ORDER BY dm.name ;
 
 10. SELECT dm.name, COUNT(u.id) as alumni_count FROM department as dm, degree as d, profile as p, user as u, role as r
